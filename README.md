@@ -1,219 +1,122 @@
-# Retail Sales Analytics | Interactive Dashboard
+# Retail Sales Analytics Dashboard 
 
-### Retail Data Analysis & Business Intelligence Portfolio Project
+A data analytics project where I explored real retail transaction data using SQL, SQLite, and Google Looker Studio.
 
-An end-to-end retail analytics portfolio project focused on exploring transactional sales data, analyzing business performance, and presenting insights through an interactive Google Looker Studio dashboard.
+**[🔗 View My Interactive Dashboard](https://datastudio.google.com/reporting/d8ad6914-7dcc-47c8-be29-7be1f01b710a)**
 
+## About the Project
 
+I started this project because I wanted to get more comfortable working with real datasets and understand how raw transaction data can be turned into useful information.
 
----
+I chose the UCI Online Retail dataset, which contains 541,909 transaction records from a UK-based online retailer between December 2010 and December 2011.
 
-## 1. Project Overview
+Instead of only calculating numbers, I wanted to build something interactive where I could explore sales performance, compare countries, and understand which products contribute the most to the business.
 
-The objective of this project is to transform raw retail transaction data into meaningful business insights through data preparation, SQL-based exploration, KPI calculations, and interactive visualizations.
-
-The analysis focuses on answering questions such as:
+Some of the questions I wanted to answer were:
 
 - Which countries generate the most revenue?
-- How does sales performance change over time?
-- Which products have the highest sales volumes?
-- Which products contribute the most revenue?
-- How many unique customers and orders are represented?
-- What is the average revenue per order?
+- How do sales change throughout the year?
+- Which products are sold most frequently?
+- Are the best-selling products also the ones generating the most revenue?
+- How many orders and unique customers are represented in the data?
 
-The resulting dashboard provides a structured overview of sales, customers, geographic performance, and product-level insights.
+## Tools I Used
 
-## 2. Dataset
+**SQL & SQLite**
 
-**Source:** UCI Machine Learning Repository — Online Retail Dataset
+I used SQL to explore the retail data and work with transactions, sales quantities, and revenue-related information.
 
-**Dataset period:** December 2010 – December 2011
+**DB Browser for SQLite**
 
-The original dataset contains approximately 541,909 transaction records from a UK-based online retail business.
+I used DB Browser to work with the database and run SQL queries.
 
-### Key Data Fields
+**Google Looker Studio**
 
-| Column | Description |
-|---|---|
-| InvoiceNo | Transaction invoice identifier |
-| StockCode | Product identifier |
-| Description | Product description |
-| Quantity | Number of units recorded |
-| InvoiceDate | Transaction date and time |
-| UnitPrice | Price per unit |
-| CustomerID | Customer identifier |
-| Country | Customer country |
-| Revenue | Transaction-line revenue, calculated from quantity and unit price |
+I created a three-page interactive dashboard to visualize the results and make the information easier to understand.
 
-The dashboard uses a prepared dataset containing **530,104 records**.
+I also worked with calculated fields to display metrics such as Average Order Value and to prepare dates for monthly revenue analysis.
 
-*Data preparation affects the final number of records. The exact cleaning and exclusion rules should be documented alongside the source code.*
+## Preparing the Data
 
-## 3. Tools & Technologies
+The original dataset contains 541,909 rows, while the prepared dataset used in my dashboard contains 530,104 records.
 
-| Technology | Purpose |
-|---|---|
-| SQL | Data exploration, filtering, grouping, and aggregations |
-| SQLite / DB Browser for SQLite | Working with the retail database |
-| Google Looker Studio | Interactive data visualization and dashboard development |
-| Calculated Fields | Creating revenue, date, and business KPI metrics |
+I worked with invoice numbers, customer IDs, product descriptions, quantities, unit prices, transaction dates, and countries.
 
-Python can also be included as a project technology once the corresponding Python scripts or notebooks are available in this repository.
+One thing I had to pay attention to was the difference between transaction records and orders. Since one order can contain multiple products, counting every row as a separate order would give incorrect results.
 
-## 4. Key Performance Indicators
+For the dashboard, I counted distinct invoice numbers to calculate the total number of orders.
 
-The dashboard currently reports the following metrics:
+I also calculated Average Order Value by dividing total revenue by the number of distinct orders.
 
-| KPI | Value |
-|---|---:|
-| Sales Records | 530,104 |
-| Total Units Sold | 5,588,376 |
-| Total Revenue | £10,666,684.54 |
-| Total Orders | 19,960 |
-| Total Customers | 4,339 |
-| Average Order Value (AOV) | £534.40 |
+The exact results depend on the preparation and filtering rules used in the dataset.
 
-### KPI Definitions
+## Exploring the Dashboard
 
-**Total Revenue**
+I divided my dashboard into three pages.
 
-The sum of the calculated revenue field across included transaction records.
+### 1. Sales Overview
 
-**Total Orders**
+This page gives a general picture of the retailer's performance.
 
-The number of distinct invoice identifiers.
+It shows the total number of sales records, the number of units sold, and total revenue.
 
-**Total Customers**
+I also included a country comparison chart and a world map to explore where the revenue comes from.
 
-The number of distinct customer identifiers.
+One of the clearest findings was how strongly the United Kingdom dominated the retailer's revenue.
 
-**Average Order Value (AOV)**
+### 2. Geographic & Sales Trends
 
-Average revenue generated per distinct invoice:
+For the second page, I focused on comparing countries and looking at sales over time.
 
-`SUM(Revenue) / COUNT_DISTINCT(InvoiceNo)`
+I created visualizations showing units sold by country, each country's share of revenue, and monthly revenue trends.
 
-**Total Units Sold**
+An interesting detail was the apparent drop in revenue in December 2011. However, the dataset only includes transactions through December 9, so this doesn't represent a complete month.
 
-The sum of recorded quantities.
+This reminded me how important it is to understand the dataset before interpreting a chart.
 
-*The monetary figures assume that the original GBP-denominated unit prices were preserved without currency conversion. KPI results depend on the data cleaning rules and filters applied.*
+### 3. Customer & Product Insights
 
-## 5. Interactive Dashboard
+The final page focuses on customer activity, orders, and product performance.
 
-The dashboard consists of three interconnected analytical pages.
+I included three main KPIs:
 
-### Page 1 — Sales Overview
+- **Total Orders:** 19,960
+- **Unique Customers:** 4,339
+- **Average Order Value:** approximately £534.40
 
-Provides a high-level overview of business performance.
+I also compared the top 10 products by quantity sold with the top 10 products by revenue.
 
-**Visualizations:**
-- Total sales records
-- Total units sold
-- Total revenue
-- Revenue by country
-- Geographic revenue distribution map
+For the revenue chart, I excluded `DOTCOM POSTAGE`, since it represents postage charges rather than a physical product.
 
-**Business purpose:** Identify leading markets and understand the distribution of sales activity.
+## Main Results
 
-### Page 2 — Geographic & Sales Trends
+After preparing the data, my dashboard showed:
 
-Explores geographic sales performance and revenue trends over time.
+- **530,104** sales records
+- **5,588,376** units sold
+- **£10,666,684.54** in total revenue
+- **19,960** distinct orders
+- **4,339** distinct customers
+- **£534.40** average order value
 
-**Visualizations:**
-- Total units sold by country
-- Revenue share by country
-- Monthly revenue trend
+The monetary values assume that the original GBP prices were retained without currency conversion.
 
-**Business purpose:** Compare international markets and observe changes in monthly revenue.
+## What I Learned
 
-**Important:** December 2011 contains partial-month data, through December 9. The apparent revenue decline at the end of the series should therefore not be interpreted as a full-month performance decline.
+This project gave me more practical experience with SQL, data preparation, KPI calculations, and interactive dashboards.
 
-### Page 3 — Customer & Product Insights
+I found it especially interesting to compare sales volume with revenue. A product can sell many units without necessarily generating the highest revenue, so looking at both metrics gives a better understanding of product performance.
 
-Focuses on transaction activity, customer metrics, and product performance.
+I also learned that creating a good dashboard isn't just about choosing charts. It's important to check how the data is calculated, make sure the results are understandable, and explain any limitations.
 
-**Visualizations:**
-- Total orders
-- Total customers
-- Average order value
-- Top 10 best-selling products by quantity
-- Top 10 products by revenue, excluding `DOTCOM POSTAGE`
+There are still areas I would like to explore further, such as customer segmentation and purchasing patterns.
 
-**Business purpose:** Compare high-volume products with high-revenue products while examining key customer and order metrics.
+## Dataset and Dashboard
 
-## 6. Key Findings
+**Dataset:** UCI Machine Learning Repository — Online Retail
 
-### Geographic Revenue Concentration
-
-The United Kingdom represents the largest share of revenue in the dashboard.
-
-This indicates that the analyzed retailer's revenue is heavily concentrated in its domestic market.
-
-### Differences Between Revenue and Unit Sales
-
-Product performance varies depending on the metric used.
-
-A product with a high sales quantity does not necessarily generate the highest revenue. Comparing these rankings provides a more complete understanding of product performance.
-
-### Monthly Revenue Patterns
-
-Revenue varies over the reporting period, with stronger monthly performance appearing toward the later months of 2011.
-
-The final month should be treated separately because it contains incomplete data.
-
-### Customer and Transaction Activity
-
-The prepared dataset contains 19,960 distinct invoices and 4,339 distinct customer identifiers, providing a basis for examining transaction volume and average order value.
-
-## 7. Data Considerations & Limitations
-
-The following factors should be considered when interpreting the results:
-
-- The analysis is based on historical retail transaction data rather than live sales.
-- The dataset contains transaction-line records, so record count should not be confused with order count.
-- Customer counts depend on the availability and treatment of customer identifiers.
-- Invoice-level metrics depend on how cancelled transactions, returns, and other nonstandard records were handled during data preparation.
-- Some descriptions represent fees or other non-product entries. `DOTCOM POSTAGE` is excluded from the product revenue ranking visualization.
-- December 2011 is an incomplete reporting month.
-- Financial metrics assume that the dataset's original GBP currency was retained.
-
-These considerations are relevant when comparing KPI results or interpreting business trends.
-
-## 8. Project Skills Demonstrated
-
-This project demonstrates practical experience with:
-
-- Relational data exploration
-- SQL aggregations
-- Data preparation
-- Business KPI development
-- Interactive dashboard design
-- Geographic and time-series analysis
-- Product performance analysis
-- Data interpretation and communication
-
-## 9. Dashboard Access
-
-**[Open the Retail Sales Analytics Dashboard](https://datastudio.google.com/reporting/d8ad6914-7dcc-47c8-be29-7be1f01b710a)**
-
-The dashboard is designed to allow readers to explore the retail analysis through interactive charts and filters.
-
-## 10. Future Improvements
-
-Potential next steps include:
-
-- Publishing reproducible SQL queries
-- Adding Python data-cleaning notebooks
-- Documenting detailed data quality checks
-- Expanding customer segmentation and retention analysis
-- Exploring revenue trends by product category
-- Adding further business recommendations supported by quantitative analysis
+**[Explore the Live Dashboard](https://datastudio.google.com/reporting/d8ad6914-7dcc-47c8-be29-7be1f01b710a)**
 
 ---
 
-**Project Type:** Data Analytics / Business Intelligence Portfolio Project
-
-**Data Source:** UCI Online Retail Dataset
-
-**Dashboard:** Google Looker Studio
+*This project is part of my Data Science portfolio and reflects my ongoing learning in data analytics and business intelligence.*
