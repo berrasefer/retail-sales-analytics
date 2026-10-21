@@ -1,9 +1,4 @@
--- Retail Sales Analytics | SQLite analysis
--- Source: UCI Online Retail, imported as table online_retail
--- UnitPrice in the raw semicolon-separated CSV uses a comma decimal separator.
--- All financial metrics use original GBP prices, provided no currency conversion was applied.
--- Consistent inclusion rules: positive quantity, positive unit price, non-cancelled invoice.
--- Note: Missing CustomerID is excluded from the unique-customer count.
+
 
 -- 1. Raw data overview
 SELECT COUNT(*) AS raw_records
