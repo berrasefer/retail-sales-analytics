@@ -4,7 +4,7 @@
 
 An end-to-end retail analytics portfolio project focused on exploring transactional sales data, analyzing business performance, and presenting insights through an interactive Google Looker Studio dashboard.
 
-**[🔗 View Live Interactive Dashboard](https://datastudio.google.com/reporting/d8ad6914-7dcc-47c8-be29-7be1f01b710a)**
+
 
 ---
 
